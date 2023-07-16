@@ -1,0 +1,21 @@
+version: '3'
+services:
+  weatherappbackend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 9000:9000
+    volumes:
+      - ./backend:/backend
+
+  weatherappfrontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./frontend:/frontend
+    depends_on:
+      - weatherappbackend
