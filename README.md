@@ -89,3 +89,29 @@ Here are some things in different categories that you can do to make the app bet
 * Structure the code and project folder structure in a modular and logical fashion for extra points.
 
 * Try to avoid any bugs or weirdness in the operating logic.
+
+### How to run the app
+
+* To run the app in local:
+    * Go to the backend folder run: `npm i && npm start`
+    * Go to the frontend folder run: `npm i && npm start`
+
+* To run the app using docker:
+    * Go to the backend folder run: `docker build -t weatherapp_backend . && docker run --rm -i -p 9000:9000 --name weatherapp_backend -t weatherapp_backend`
+    * Go to the frontend folder and run: `docker build -t weatherapp_frontend . && docker run --rm -i -p 9000:9000 --name weatherapp_frontend -t weatherapp_frontend`
+        * if not Local:
+           * "curl ifconfig.me" -> get public ip of instance
+           * "change ip in .env"
+           * "source .env in root folder"
+           * Add a environmental variable in the docker run with "-e ENDPOINT $ENDPOINT"
+
+* To run the app using docker-compose with hot reload:
+    * Go to the root folder where docker-compose.yml file is present and run `docker-compose up --build`
+        * if not Local: (do these before docker-compose step above)
+          * "curl ifconfig.me" -> get public ip of instance
+          * "change ip in .env"
+          * "source .env in root folder"
+
+* To run the app using ansible:
+    * From the root directory where deploy.yml is present, run: `ansible-playbook deploy.yml`
+    * You can run it in verbose mode using `ansible-playbook deploy.yml -vvv`
