@@ -10,6 +10,8 @@ services:
       - ./backend:/backend
 
   weatherappfrontend:
+    environment:
+      - ENDPOINT=${ENDPOINT}
     build:
       context: ./frontend
       dockerfile: Dockerfile

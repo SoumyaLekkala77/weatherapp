@@ -44,7 +44,7 @@
 
     - name: Add current user to the docker group
       user:
-        name: {{whoami.stdout_lines[0]}}
+        name: "{{whoami.stdout_lines[0]}}"
         groups: docker
         append: yes
         state: present
@@ -63,13 +63,12 @@
 
     - name: Replace the ENDPOINT variable in .env with the public ip of the instance
       lineinfile:
-        path: .env
-        regexp: '^ENDPOINT'
-        line: 'ENDPOINT: http://{{ifcfg.stdout}}:9000/api'
+        path: ./frontend/.env
+        regexp: '^export ENDPOINT'
+        line: 'export ENDPOINT=http://{{ifcfg.stdout}}:9000/api'
 
-    - name: Run Docker Compose
+    - name: Run Docker Compose, with variables exported from .env
       become: yes
-      command:
-        cmd: docker-compose up --build -d 
+      shell: source .env; docker-compose up --build -d 
 
 
