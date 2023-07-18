@@ -13,9 +13,9 @@ Orchestration framework based on Python.
 Used to install docker and orchestrate the weatherapp deployment using docker.
 ### Docker:
 [docker](https://www.docker.com/)
-### Cloud: Any public cloud infrastructure provider : Tested on AWS EC2
+### Cloud: Any public cloud infrastructure provider : Tested on AWS EC2 
 [AWS](https://aws.amazon.com/free/)
-
+.You can access the running App using: "http://13.59.15.159:8000/". Provided my public IP of the EC2 instance is still the same.
 ## How to run the app
 
 * To run the app in local:
