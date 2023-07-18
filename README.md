@@ -36,7 +36,7 @@ Used to install docker and orchestrate the weatherapp deployment using docker.
         * if not Local: (do these before docker-compose step above)
           * "curl ifconfig.me" -> get public ip of instance
           * "change ip in .env"
-          * "source .env in root folder" `source .env docker-compose up --build`
+          * "source .env in root folder" `source .env; docker-compose up --build`
 
 * To run the app using ansible:
     * From the root directory where deploy.yml is present, run: `ansible-playbook deploy.yml`
