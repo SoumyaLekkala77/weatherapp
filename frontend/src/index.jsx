@@ -14,26 +14,43 @@ const getWeatherFromApi = async () => {
   return {};
 };
 
+
 class Weather extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      icon: '',
+    this.state = 
+      icon: "",
+      lati: "",
+      longit: "",
     };
   }
 
   async componentDidMount() {
+  
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position)=> {
+	      const { latitude, longitude } = position.coords;
+	      this.setState({ lati: latitude, longit: longitude });
+    	},
+	error
+    }; else {
+	    console.log("Geolocation not supported");
+    }
+
     const weather = await getWeatherFromApi();
     this.setState({ icon: weather.icon.slice(0, -1) });
   }
 
   render() {
-    const { icon } = this.state;
+    const { icon, lati, longit} = this.state;
 
     return (
       <div className="icon">
-        { icon && <img src={`/img/${icon}.svg`} alt="Weather Icon" /> }
+        <h1>{`${lati}`} </h1>
+        <h1>{`${longit}`}</h1>
+	<h1> TEST </h1>
+        { icon && <img src={`/img/${icon}.svg`} alt="weather app" /> }
       </div>
     );
   }
@@ -41,5 +58,5 @@ class Weather extends React.Component {
 
 ReactDOM.render(
   <Weather />,
-  document.getElementById('app'),
+  document.getElementById('app')
 );
